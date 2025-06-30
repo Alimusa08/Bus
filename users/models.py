@@ -8,7 +8,7 @@ class CustomUserManager(BaseUserManager):
         if not phone:
             raise ValueError('The Phone field must be set')
         user = self.model(phone=phone, **extra_fields)
-        user.set_password(None)  # No password initially; set after OTP verification
+        user.set_password(None)  # No password 
         user.save(using=self._db)
         return user
 

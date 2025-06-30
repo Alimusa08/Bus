@@ -81,7 +81,6 @@ def logout_user(request):
     return Response({"error": "Not logged in"}, status=401)
 
 def send_sms(phone, otp):
-    # Mock SMS for development
     with open('otp_log.txt', 'a') as f:
         f.write(f"OTP {otp} sent to {phone}\n")
         
