@@ -1,0 +1,43 @@
+# REST Client file for testing OTP-based authentication API
+# Ensure Django server is running at http://localhost:8000
+# After sending requests that generate OTPs, check otp_log.txt for the OTP code
+# Replace <OTP_CODE> in the login request with the actual OTP from otp_log.txt
+
+###
+# Register a new user
+POST http://localhost:8000/api/register/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "phone": "+333",
+  "name": "a3"
+}
+
+###
+# Request OTP for an existing user (e.g., after logout)
+POST http://localhost:8000/api/send-otp/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "phone": "+333"
+}
+
+###
+# Login with OTP (replace <OTP_CODE> with the code from otp_log.txt)
+POST http://localhost:8000/api/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "phone": "+333",
+  "otp": "371708"
+}
+
+###
+# Logout
+POST http://localhost:8000/api/logout/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:8000/api/check-user/ HTTP/1.1
+Content-Type: application/json
